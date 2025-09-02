@@ -5,7 +5,7 @@ import { StandingsTable } from "./components/StandingsTable";
 import { MatchdaySelector } from "./components/MatchdaySelector";
 import { QuickStats } from "./components/QuickStats";
 import { Button } from "./components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "./components/ui/card";
+import { Card, CardHeader, CardContent } from "./components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Progress } from "./components/ui/progress";
 import { Badge } from "./components/ui/badge";
