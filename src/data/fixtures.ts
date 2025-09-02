@@ -28,11 +28,11 @@ function generateRoundRobin(round: number): { home: string; away: string }[] {
   const fixtures = [
     // Fecha 1
     [
-      { home: "colombia", away: "venezuela" },
       { home: "paraguay", away: "peru" },
+      { home: "colombia", away: "venezuela" },
       { home: "argentina", away: "ecuador" },
-      { home: "brasil", away: "bolivia" },
       { home: "uruguay", away: "chile" },
+      { home: "brasil", away: "bolivia" },
     ],
     // Fecha 2
     [
@@ -44,8 +44,8 @@ function generateRoundRobin(round: number): { home: string; away: string }[] {
     ],
     // Fecha 3
     [
-      { home: "bolivia", away: "ecuador" },
       { home: "colombia", away: "uruguay" },
+      { home: "bolivia", away: "ecuador" },
       { home: "argentina", away: "paraguay" },
       { home: "chile", away: "peru" },
       { home: "brasil", away: "venezuela" },
@@ -69,118 +69,108 @@ function generateRoundRobin(round: number): { home: string; away: string }[] {
     // Fecha 6
     [
       { home: "paraguay", away: "colombia" },
-      { home: "uruguay", away: "bolivia" },
       { home: "ecuador", away: "chile" },
+      { home: "uruguay", away: "bolivia" },
       { home: "brasil", away: "argentina" },
       { home: "peru", away: "venezuela" },
     ],
     // Fecha 7
     [
       { home: "bolivia", away: "venezuela" },
-      { home: "ecuador", away: "brasil" },
-      { home: "uruguay", away: "paraguay" },
       { home: "argentina", away: "chile" },
+      { home: "uruguay", away: "paraguay" },
+      { home: "brasil", away: "ecuador" },
       { home: "peru", away: "colombia" },
     ],
     // Fecha 8
     [
+      { home: "colombia", away: "argentina" },
+      { home: "ecuador", away: "peru" },
       { home: "chile", away: "bolivia" },
-      { home: "venezuela", away: "argentina" },
-      { home: "paraguay", away: "ecuador" },
-      { home: "colombia", away: "uruguay" },
-      { home: "brasil", away: "peru" },
+      { home: "venezuela", away: "uruguay" },
+      { home: "paraguay", away: "brasil" },
     ],
     // Fecha 9
     [
-      { home: "bolivia", away: "uruguay" },
-      { home: "ecuador", away: "peru" },
-      { home: "colombia", away: "chile" },
-      { home: "argentina", away: "brasil" },
-      { home: "venezuela", away: "paraguay" },
+      { home: "bolivia", away: "colombia" },
+      { home: "ecuador", away: "paraguay" },
+      { home: "venezuela", away: "argentina" },
+      { home: "chile", away: "brasil" },
+      { home: "peru", away: "uruguay" },
     ],
     // Fecha 10
     [
-      { home: "paraguay", away: "argentina" },
-      { home: "chile", away: "venezuela" },
-      { home: "brasil", away: "colombia" },
+      { home: "colombia", away: "chile" },
+      { home: "paraguay", away: "venezuela" },
       { home: "uruguay", away: "ecuador" },
-      { home: "peru", away: "bolivia" },
+      { home: "argentina", away: "bolivia" },
+      { home: "brasil", away: "peru" },
     ],
     // Fecha 11
     [
-      { home: "colombia", away: "bolivia" },
-      { home: "chile", away: "argentina" },
-      { home: "brasil", away: "ecuador" },
-      { home: "peru", away: "uruguay" },
-      { home: "venezuela", away: "peru" },
+      { home: "venezuela", away: "brasil" },
+      { home: "paraguay", away: "argentina" },
+      { home: "ecuador", away: "bolivia" },
+      { home: "uruguay", away: "colombia" },
+      { home: "peru", away: "chile" },
     ],
     // Fecha 12
     [
-      { home: "bolivia", away: "colombia" },
-      { home: "ecuador", away: "venezuela" },
-      { home: "uruguay", away: "peru" },
-      { home: "argentina", away: "brasil" },
-      { home: "chile", away: "paraguay" },
+      { home: "bolivia", away: "paraguay" },
+      { home: "colombia", away: "ecuador" },
+      { home: "argentina", away: "peru" },
+      { home: "chile", away: "venezuela" },
+      { home: "brasil", away: "uruguay" },
     ],
     // Fecha 13
     [
-      { home: "paraguay", away: "uruguay" },
-      { home: "colombia", away: "ecuador" },
-      { home: "chile", away: "brasil" },
-      { home: "argentina", away: "bolivia" },
-      { home: "peru", away: "venezuela" },
+      { home: "paraguay", away: "chile" },
+      { home: "brasil", away: "colombia" },
+      { home: "peru", away: "bolivia" },
+      { home: "ecuador", away: "venezuela" },
+      { home: "uruguay", away: "argentina" },
     ],
     // Fecha 14
     [
-      { home: "bolivia", away: "chile" },
-      { home: "ecuador", away: "paraguay" },
-      { home: "brasil", away: "uruguay" },
-      { home: "venezuela", away: "colombia" },
-      { home: "peru", away: "argentina" },
+      { home: "bolivia", away: "uruguay" },
+      { home: "chile", away: "ecuador" },
+      { home: "venezuela", away: "peru" },
+      { home: "colombia", away: "paraguay" },
+      { home: "argentina", away: "brasil" },
     ],
     // Fecha 15
     [
-      { home: "paraguay", away: "brasil" },
-      { home: "colombia", away: "argentina" },
-      { home: "uruguay", away: "venezuela" },
-      { home: "chile", away: "ecuador" },
-      { home: "peru", away: "bolivia" },
+      { home: "paraguay", away: "uruguay" },
+      { home: "ecuador", away: "brasil" },
+      { home: "chile", away: "argentina" },
+      { home: "colombia", away: "peru" },
+      { home: "venezuela", away: "bolivia" },
     ],
     // Fecha 16
     [
-      { home: "bolivia", away: "paraguay" },
-      { home: "ecuador", away: "argentina" },
-      { home: "venezuela", away: "uruguay" },
-      { home: "brasil", away: "chile" },
-      { home: "colombia", away: "peru" },
+      { home: "bolivia", away: "chile" },
+      { home: "uruguay", away: "venezuela" },
+      { home: "argentina", away: "colombia" },
+      { home: "brasil", away: "paraguay" },
+      { home: "peru", away: "ecuador" },
     ],
     // Fecha 17
     [
-      { home: "paraguay", away: "venezuela" },
-      { home: "uruguay", away: "colombia" },
-      { home: "argentina", away: "peru" },
-      { home: "chile", away: "bolivia" },
-      { home: "brasil", away: "ecuador" },
+      { home: "paraguay", away: "ecuador" },
+      { home: "argentina", away: "venezuela" },
+      { home: "uruguay", away: "peru" },
+      { home: "colombia", away: "bolivia" },
+      { home: "brasil", away: "chile" },
     ],
     // Fecha 18
     [
+      { home: "ecuador", away: "argentina" },
+      { home: "chile", away: "uruguay" },
       { home: "bolivia", away: "brasil" },
-      { home: "ecuador", away: "colombia" },
-      { home: "venezuela", away: "argentina" },
-      { home: "uruguay", away: "chile" },
+      { home: "venezuela", away: "colombia" },
       { home: "peru", away: "paraguay" },
     ],
   ];
 
-  // Para las fechas 10-18, invertir local y visitante (vuelta)
-  if (round <= 9) {
-    return fixtures[round - 1] || [];
-  } else {
-    const returnRound = round - 9;
-    const originalMatches = fixtures[returnRound - 1] || [];
-    return originalMatches.map((match) => ({
-      home: match.away,
-      away: match.home,
-    }));
-  }
+  return fixtures[round - 1] || [];
 }
