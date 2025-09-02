@@ -141,6 +141,18 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
             currentMatchday: 1,
           });
         },
+
+        restoreData: (
+          matches: Match[],
+          standings: TeamStats[],
+          currentMatchday: number
+        ) => {
+          set({
+            matches,
+            standings,
+            currentMatchday,
+          });
+        },
       }),
       {
         name: "eliminatorias-storage",

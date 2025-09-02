@@ -35,4 +35,9 @@ export interface EliminatoriasState {
   updateMatch: (matchId: string, homeScore: number, awayScore: number) => void;
   calculateStandings: () => void;
   resetData: () => void;
+  restoreData: (
+    matches: Match[],
+    standings: TeamStats[],
+    currentMatchday: number
+  ) => void;
 }

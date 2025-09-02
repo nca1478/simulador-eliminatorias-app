@@ -4,6 +4,7 @@ import { MatchCard } from "./components/MatchCard";
 import { StandingsTable } from "./components/StandingsTable";
 import { MatchdaySelector } from "./components/MatchdaySelector";
 import { QuickStats } from "./components/QuickStats";
+import { BackupManager } from "./components/BackupManager";
 import { Button } from "./components/ui/button";
 import { Card, CardHeader, CardContent } from "./components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
@@ -155,8 +156,13 @@ function App() {
           </TabsContent>
         </Tabs>
 
+        {/* Backup Manager */}
+        <div className="max-w-2xl mx-auto mt-12">
+          <BackupManager />
+        </div>
+
         {/* Reset Button */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8">
           <Card className="inline-block bg-white/80 backdrop-blur-sm border-0 shadow-lg">
             <CardContent className="p-6">
               <Button
