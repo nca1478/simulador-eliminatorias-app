@@ -146,9 +146,6 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({
                           <div className="font-bold text-foreground">
                             {teamInfo?.name}
                           </div>
-                          <div className="text-xs text-muted-foreground">
-                            {teamInfo?.name}
-                          </div>
                         </div>
                       </div>
                     </td>
