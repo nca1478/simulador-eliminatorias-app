@@ -35,7 +35,7 @@ export const MatchdaySelector: React.FC<MatchdaySelectorProps> = ({
                   size="sm"
                   onClick={() => onMatchdayChange(matchday)}
                   className={`
-                    min-w-[3rem] h-10 font-bold transition-all duration-200 
+                    min-w-[3rem] h-10 font-bold transition-all duration-200 cursor-pointer
                     ${
                       currentMatchday === matchday
                         ? "shadow-lg scale-110 bg-primary text-primary-foreground"
@@ -56,7 +56,7 @@ export const MatchdaySelector: React.FC<MatchdaySelectorProps> = ({
               size="sm"
               onClick={() => onMatchdayChange(Math.max(1, currentMatchday - 1))}
               disabled={currentMatchday === 1}
-              className="text-xs"
+              className="text-xs cursor-pointer disabled:cursor-not-allowed"
             >
               ← Anterior
             </Button>
@@ -67,7 +67,7 @@ export const MatchdaySelector: React.FC<MatchdaySelectorProps> = ({
                 onMatchdayChange(Math.min(totalMatchdays, currentMatchday + 1))
               }
               disabled={currentMatchday === totalMatchdays}
-              className="text-xs"
+              className="text-xs cursor-pointer disabled:cursor-not-allowed"
             >
               Siguiente →
             </Button>
