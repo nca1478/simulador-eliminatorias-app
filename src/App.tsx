@@ -5,6 +5,7 @@ import { StandingsTable } from "./components/StandingsTable";
 import { MatchdaySelector } from "./components/MatchdaySelector";
 import { QuickStats } from "./components/QuickStats";
 import { BackupManager } from "./components/BackupManager";
+import { PointsManager } from "./components/PointsManager";
 import { Button } from "./components/ui/button";
 import { Card, CardHeader, CardContent } from "./components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
@@ -162,6 +163,11 @@ function App() {
           </TabsContent>
 
           <TabsContent value="utilities" className="space-y-8">
+            {/* Points Manager */}
+            <div className="max-w-2xl mx-auto">
+              <PointsManager />
+            </div>
+
             {/* Backup Manager */}
             <div className="max-w-2xl mx-auto">
               <BackupManager />

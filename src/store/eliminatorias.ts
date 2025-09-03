@@ -154,6 +154,31 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
             currentMatchday,
           });
         },
+
+        adjustTeamPoints: (teamId: string, pointsChange: number) => {
+          set((state) => {
+            const updatedStandings = state.standings.map((teamStats) => {
+              if (teamStats.team === teamId) {
+                const newPoints = Math.max(0, teamStats.points + pointsChange);
+                return {
+                  ...teamStats,
+                  points: newPoints,
+                };
+              }
+              return teamStats;
+            });
+
+            // Reordenar tabla después del cambio de puntos
+            updatedStandings.sort((a, b) => {
+              if (b.points !== a.points) return b.points - a.points;
+              if (b.goalDifference !== a.goalDifference)
+                return b.goalDifference - a.goalDifference;
+              return b.goalsFor - a.goalsFor;
+            });
+
+            return { ...state, standings: updatedStandings };
+          });
+        },
       }),
       {
         name: "eliminatorias-storage",

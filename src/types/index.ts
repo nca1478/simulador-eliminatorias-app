@@ -45,4 +45,5 @@ export interface EliminatoriasState {
     standings: TeamStats[],
     currentMatchday: number
   ) => void;
+  adjustTeamPoints: (teamId: string, pointsChange: number) => void;
 }
