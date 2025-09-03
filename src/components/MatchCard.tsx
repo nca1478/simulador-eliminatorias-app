@@ -14,6 +14,13 @@ interface MatchCardProps {
 export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
   const [homeScore, setHomeScore] = useState(match.homeScore?.toString() || "");
   const [awayScore, setAwayScore] = useState(match.awayScore?.toString() || "");
+  const [isEditing, setIsEditing] = useState(false);
+  const [originalHomeScore, setOriginalHomeScore] = useState(
+    match.homeScore || 0
+  );
+  const [originalAwayScore, setOriginalAwayScore] = useState(
+    match.awayScore || 0
+  );
   const updateMatch = useEliminatoriasStore((state) => state.updateMatch);
 
   const homeTeam = teams.find((t) => t.id === match.homeTeam);
@@ -23,19 +30,33 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
     const home = parseInt(homeScore) || 0;
     const away = parseInt(awayScore) || 0;
     updateMatch(match.id, home, away);
+    setIsEditing(false);
   };
 
   const handleReset = () => {
     setHomeScore("");
     setAwayScore("");
     updateMatch(match.id, 0, 0, false);
+    setIsEditing(false);
   };
 
   const handleEdit = () => {
+    // Store original scores before editing
+    setOriginalHomeScore(match.homeScore || 0);
+    setOriginalAwayScore(match.awayScore || 0);
     // Set the current scores in the input fields and make the match editable
     setHomeScore(match.homeScore?.toString() || "");
     setAwayScore(match.awayScore?.toString() || "");
+    setIsEditing(true);
     updateMatch(match.id, match.homeScore || 0, match.awayScore || 0, false);
+  };
+
+  const handleDiscard = () => {
+    // Restore original scores and exit editing mode
+    setHomeScore(originalHomeScore.toString());
+    setAwayScore(originalAwayScore.toString());
+    updateMatch(match.id, originalHomeScore, originalAwayScore, true);
+    setIsEditing(false);
   };
 
   return (
@@ -135,7 +156,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
           )}
 
           {/* Score Input Section */}
-          {!match.played && (
+          {(!match.played || isEditing) && (
             <div className="bg-muted/30 rounded-lg p-3 sm:p-4">
               <div className="flex items-center justify-center space-x-3 sm:space-x-4">
                 <div className="text-center">
@@ -175,16 +196,28 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
 
           {/* Action Buttons */}
           <div className="flex justify-center space-x-2 sm:space-x-3">
-            {!match.played ? (
-              <Button
-                onClick={handleSaveResult}
-                disabled={homeScore === "" || awayScore === ""}
-                className="px-4 sm:px-6 py-2 text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
-              >
-                <span className="mr-1 sm:mr-2">💾</span>
-                <span className="hidden sm:inline">Guardar Resultado</span>
-                <span className="sm:hidden">Guardar</span>
-              </Button>
+            {!match.played || isEditing ? (
+              <div className="flex space-x-2">
+                <Button
+                  onClick={handleSaveResult}
+                  disabled={homeScore === "" || awayScore === ""}
+                  className="px-4 sm:px-6 py-2 text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+                >
+                  <span className="mr-1 sm:mr-2">💾</span>
+                  <span className="hidden sm:inline">Guardar Resultado</span>
+                  <span className="sm:hidden">Guardar</span>
+                </Button>
+                {isEditing && (
+                  <Button
+                    onClick={handleDiscard}
+                    className="px-4 sm:px-6 py-2 text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+                  >
+                    <span className="mr-1 sm:mr-2">❌</span>
+                    <span className="hidden sm:inline">Descartar</span>
+                    <span className="sm:hidden">Descartar</span>
+                  </Button>
+                )}
+              </div>
             ) : (
               <div className="flex space-x-2">
                 <Button
