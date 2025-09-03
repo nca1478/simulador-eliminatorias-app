@@ -6,14 +6,12 @@ import type { TeamStats, Team } from "../types";
 interface QuickStatsProps {
   standings: TeamStats[];
   teams: Team[];
-  totalMatches: number;
   playedMatches: number;
 }
 
 export const QuickStats: React.FC<QuickStatsProps> = ({
   standings,
   teams,
-  totalMatches,
   playedMatches,
 }) => {
   const leader = standings[0];

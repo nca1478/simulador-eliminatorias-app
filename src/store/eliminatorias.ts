@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, devtools } from "zustand/middleware";
-import type { EliminatoriasState, TeamStats } from "../types";
+import type { EliminatoriasState, TeamStats, Match } from "../types";
 import { teams } from "../data/teams";
 import { generateFixtures } from "../data/fixtures";
 

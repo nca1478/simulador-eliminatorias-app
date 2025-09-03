@@ -156,7 +156,6 @@ function App() {
             <QuickStats
               standings={standings}
               teams={teams}
-              totalMatches={totalMatches}
               playedMatches={totalPlayedMatches}
             />
             <StandingsTable standings={standings} teams={teams} />
