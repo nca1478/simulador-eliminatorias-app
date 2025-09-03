@@ -28,7 +28,14 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
   const handleReset = () => {
     setHomeScore("");
     setAwayScore("");
-    updateMatch(match.id, 0, 0);
+    updateMatch(match.id, 0, 0, false);
+  };
+
+  const handleEdit = () => {
+    // Set the current scores in the input fields and make the match editable
+    setHomeScore(match.homeScore?.toString() || "");
+    setAwayScore(match.awayScore?.toString() || "");
+    updateMatch(match.id, match.homeScore || 0, match.awayScore || 0, false);
   };
 
   return (
@@ -136,10 +143,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
             ) : (
               <div className="flex space-x-2">
                 <Button
-                  onClick={() => {
-                    setHomeScore(match.homeScore?.toString() || "");
-                    setAwayScore(match.awayScore?.toString() || "");
-                  }}
+                  onClick={handleEdit}
                   variant="outline"
                   size="sm"
                   className="shadow-sm hover:shadow-md transition-all duration-200"

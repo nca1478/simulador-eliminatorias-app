@@ -29,16 +29,17 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
         updateMatch: (
           matchId: string,
           homeScore: number,
-          awayScore: number
+          awayScore: number,
+          played: boolean = true
         ) => {
           set((state) => {
             const updatedMatches = state.matches.map((match) => {
               if (match.id === matchId) {
                 return {
                   ...match,
-                  homeScore,
-                  awayScore,
-                  played: true,
+                  homeScore: played ? homeScore : undefined,
+                  awayScore: played ? awayScore : undefined,
+                  played,
                 };
               }
               return match;
