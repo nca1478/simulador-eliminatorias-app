@@ -112,7 +112,7 @@ function App() {
               >
                 <span className="text-sm sm:text-lg">📊</span>
                 <span className="hidden xs:inline">Tabla</span>
-                <span className="xs:hidden">Pos.</span>
+                <span className="xs:hidden">Posiciones</span>
               </TabsTrigger>
               <TabsTrigger
                 value="utilities"
@@ -120,7 +120,7 @@ function App() {
               >
                 <span className="text-sm sm:text-lg">🔧</span>
                 <span className="hidden xs:inline">Utilidades</span>
-                <span className="xs:hidden">Utils</span>
+                <span className="xs:hidden">Utilidades</span>
               </TabsTrigger>
             </TabsList>
           </div>
