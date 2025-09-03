@@ -136,21 +136,21 @@ export function PointsManager() {
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   <Button
-                    variant="destructive"
+                    variant="outline"
                     size="lg"
                     onClick={() => handlePointsChange(-1)}
                     disabled={currentPoints === 0}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
                     <Minus className="h-4 w-4" />
                     -1
                   </Button>
                   <Button
-                    variant="destructive"
+                    variant="outline"
                     size="lg"
                     onClick={() => handlePointsChange(-3)}
                     disabled={currentPoints < 3}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
                     <Minus className="h-4 w-4" />
                     -3
