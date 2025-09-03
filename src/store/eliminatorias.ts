@@ -15,6 +15,7 @@ const initialStandings: TeamStats[] = teams.map((team) => ({
   goalDifference: 0,
   points: 0,
   lastFive: [],
+  manualPointsAdjustment: 0,
 }));
 
 export const useEliminatoriasStore = create<EliminatoriasState>()(
@@ -54,6 +55,15 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
 
         calculateStandings: () => {
           set((state) => {
+            // Preservar los ajustes manuales existentes
+            const existingAdjustments = state.standings.reduce(
+              (acc, teamStats) => {
+                acc[teamStats.team] = teamStats.manualPointsAdjustment || 0;
+                return acc;
+              },
+              {} as Record<string, number>
+            );
+
             const newStandings: TeamStats[] = teams.map((team) => ({
               team: team.id,
               played: 0,
@@ -65,6 +75,7 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
               goalDifference: 0,
               points: 0,
               lastFive: [],
+              manualPointsAdjustment: existingAdjustments[team.id] || 0,
             }));
 
             // Procesar todos los partidos jugados
@@ -118,9 +129,13 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
               }
             });
 
-            // Calcular diferencia de goles
+            // Calcular diferencia de goles y aplicar ajustes manuales
             newStandings.forEach((team) => {
               team.goalDifference = team.goalsFor - team.goalsAgainst;
+              // Aplicar ajustes manuales de puntos
+              team.points += team.manualPointsAdjustment || 0;
+              // Asegurar que los puntos no sean negativos
+              team.points = Math.max(0, team.points);
             });
 
             // Ordenar tabla por puntos, diferencia de goles y goles a favor
@@ -159,10 +174,17 @@ export const useEliminatoriasStore = create<EliminatoriasState>()(
           set((state) => {
             const updatedStandings = state.standings.map((teamStats) => {
               if (teamStats.team === teamId) {
-                const newPoints = Math.max(0, teamStats.points + pointsChange);
+                const currentAdjustment = teamStats.manualPointsAdjustment || 0;
+                const newAdjustment = currentAdjustment + pointsChange;
+                const newTotalPoints = Math.max(
+                  0,
+                  teamStats.points + pointsChange
+                );
+
                 return {
                   ...teamStats,
-                  points: newPoints,
+                  points: newTotalPoints,
+                  manualPointsAdjustment: newAdjustment,
                 };
               }
               return teamStats;

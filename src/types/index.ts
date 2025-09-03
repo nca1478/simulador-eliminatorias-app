@@ -25,6 +25,7 @@ export interface TeamStats {
   goalDifference: number;
   points: number;
   lastFive: ("W" | "D" | "L")[];
+  manualPointsAdjustment?: number;
 }
 
 export interface EliminatoriasState {
