@@ -32,16 +32,20 @@ export const QuickStats: React.FC<QuickStatsProps> = ({
   const bestDefenseTeam = teams.find((t) => t.id === bestDefense?.team);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
       {/* Líder */}
       <Card className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-200 shadow-lg">
-        <CardContent className="p-4 text-center">
-          <div className="text-3xl mb-2">👑</div>
-          <div className="text-sm text-muted-foreground mb-1">Líder</div>
-          <div className="flex items-center justify-center space-x-2">
-            <span className="text-2xl">{leaderTeam?.flag}</span>
+        <CardContent className="p-3 sm:p-4 text-center">
+          <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">👑</div>
+          <div className="text-xs sm:text-sm text-muted-foreground mb-1">
+            Líder
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2">
+            <span className="text-xl sm:text-2xl">{leaderTeam?.flag}</span>
             <div>
-              <div className="font-bold text-sm">{leaderTeam?.name}</div>
+              <div className="font-bold text-xs sm:text-sm truncate max-w-[80px] sm:max-w-none">
+                {leaderTeam?.name}
+              </div>
               <Badge variant="secondary" className="text-xs">
                 {leader?.points} pts
               </Badge>
@@ -52,13 +56,20 @@ export const QuickStats: React.FC<QuickStatsProps> = ({
 
       {/* Mejor Ataque */}
       <Card className="bg-gradient-to-br from-red-50 to-red-100 border-red-200 shadow-lg">
-        <CardContent className="p-4 text-center">
-          <div className="text-3xl mb-2">⚽</div>
-          <div className="text-sm text-muted-foreground mb-1">Mejor Ataque</div>
-          <div className="flex items-center justify-center space-x-2">
-            <span className="text-2xl">{highestScorerTeam?.flag}</span>
+        <CardContent className="p-3 sm:p-4 text-center">
+          <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">⚽</div>
+          <div className="text-xs sm:text-sm text-muted-foreground mb-1">
+            <span className="hidden sm:inline">Mejor Ataque</span>
+            <span className="sm:hidden">Ataque</span>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2">
+            <span className="text-xl sm:text-2xl">
+              {highestScorerTeam?.flag}
+            </span>
             <div>
-              <div className="font-bold text-sm">{highestScorerTeam?.name}</div>
+              <div className="font-bold text-xs sm:text-sm truncate max-w-[80px] sm:max-w-none">
+                {highestScorerTeam?.name}
+              </div>
               <Badge variant="secondary" className="text-xs">
                 {highestScorer?.goalsFor} goles
               </Badge>
@@ -69,15 +80,18 @@ export const QuickStats: React.FC<QuickStatsProps> = ({
 
       {/* Mejor Defensa */}
       <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg">
-        <CardContent className="p-4 text-center">
-          <div className="text-3xl mb-2">🛡️</div>
-          <div className="text-sm text-muted-foreground mb-1">
-            Mejor Defensa
+        <CardContent className="p-3 sm:p-4 text-center">
+          <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🛡️</div>
+          <div className="text-xs sm:text-sm text-muted-foreground mb-1">
+            <span className="hidden sm:inline">Mejor Defensa</span>
+            <span className="sm:hidden">Defensa</span>
           </div>
-          <div className="flex items-center justify-center space-x-2">
-            <span className="text-2xl">{bestDefenseTeam?.flag}</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2">
+            <span className="text-xl sm:text-2xl">{bestDefenseTeam?.flag}</span>
             <div>
-              <div className="font-bold text-sm">{bestDefenseTeam?.name}</div>
+              <div className="font-bold text-xs sm:text-sm truncate max-w-[80px] sm:max-w-none">
+                {bestDefenseTeam?.name}
+              </div>
               <Badge variant="secondary" className="text-xs">
                 {bestDefense?.goalsAgainst} goles
               </Badge>
@@ -88,16 +102,21 @@ export const QuickStats: React.FC<QuickStatsProps> = ({
 
       {/* Estadísticas Generales */}
       <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 shadow-lg">
-        <CardContent className="p-4 text-center">
-          <div className="text-3xl mb-2">📊</div>
-          <div className="text-sm text-muted-foreground mb-1">Promedio</div>
+        <CardContent className="p-3 sm:p-4 text-center">
+          <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">📊</div>
+          <div className="text-xs sm:text-sm text-muted-foreground mb-1">
+            Promedio
+          </div>
           <div className="space-y-1">
-            <div className="font-bold text-lg">{avgGoalsPerMatch}</div>
+            <div className="font-bold text-base sm:text-lg">
+              {avgGoalsPerMatch}
+            </div>
             <div className="text-xs text-muted-foreground">
-              goles por partido
+              <span className="hidden sm:inline">goles por partido</span>
+              <span className="sm:hidden">goles/partido</span>
             </div>
             <Badge variant="secondary" className="text-xs">
-              {totalGoals} goles totales
+              {totalGoals} goles
             </Badge>
           </div>
         </CardContent>

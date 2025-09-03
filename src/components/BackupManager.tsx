@@ -77,19 +77,20 @@ export const BackupManager = () => {
 
   return (
     <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
-      <CardHeader className="text-center">
-        <CardTitle className="flex items-center justify-center gap-2 text-xl">
-          <span className="text-2xl">💾</span>
-          Respaldo de Datos
+      <CardHeader className="text-center px-4 sm:px-6">
+        <CardTitle className="flex items-center justify-center gap-2 text-lg sm:text-xl">
+          <span className="text-xl sm:text-2xl">💾</span>
+          <span className="hidden sm:inline">Respaldo de Datos</span>
+          <span className="sm:hidden">Respaldo</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
         {/* Estado actual */}
         <div className="text-center space-y-2">
-          <div className="flex justify-center gap-4 text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 text-sm text-muted-foreground">
             <Badge variant="outline">Fecha {currentMatchday} de 18</Badge>
             <Badge variant="outline">
-              {playedMatches}/{totalMatches} partidos jugados
+              {playedMatches}/{totalMatches} partidos
             </Badge>
           </div>
         </div>
@@ -97,24 +98,30 @@ export const BackupManager = () => {
         <Separator />
 
         {/* Botones de acción */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <Button
             onClick={handleExport}
-            className="flex items-center gap-2 h-12 cursor-pointer"
+            className="flex items-center gap-2 h-10 sm:h-12 cursor-pointer text-sm sm:text-base"
             variant="outline"
           >
-            <span className="text-lg">📤</span>
-            Exportar Datos
+            <span className="text-base sm:text-lg">📤</span>
+            <span className="hidden sm:inline">Exportar Datos</span>
+            <span className="sm:hidden">Exportar</span>
           </Button>
 
           <Button
             onClick={handleImportClick}
             disabled={isImporting}
-            className="flex items-center gap-2 h-12 cursor-pointer"
+            className="flex items-center gap-2 h-10 sm:h-12 cursor-pointer text-sm sm:text-base"
             variant="default"
           >
-            <span className="text-lg">📥</span>
-            {isImporting ? "Importando..." : "Importar Datos"}
+            <span className="text-base sm:text-lg">📥</span>
+            <span className="hidden sm:inline">
+              {isImporting ? "Importando..." : "Importar Datos"}
+            </span>
+            <span className="sm:hidden">
+              {isImporting ? "Importando..." : "Importar"}
+            </span>
           </Button>
         </div>
 
@@ -141,18 +148,14 @@ export const BackupManager = () => {
         )}
 
         {/* Información adicional */}
-        <div className="text-xs text-muted-foreground text-center space-y-1">
-          <p>
-            • El archivo de respaldo incluye todos los partidos, resultados y
-            estadísticas
-          </p>
-          <p>
+        <div className="text-xs text-muted-foreground text-center space-y-1 px-2">
+          <p>• El archivo incluye todos los partidos y estadísticas</p>
+          <p className="hidden sm:block">
             • Al importar datos se actualizará tanto el localStorage como el
             estado de la aplicación
           </p>
           <p>
-            • Los archivos de respaldo tienen formato JSON y son compatibles
-            entre versiones
+            • Los archivos tienen formato JSON y son compatibles entre versiones
           </p>
         </div>
       </CardContent>

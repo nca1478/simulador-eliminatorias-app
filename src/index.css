@@ -71,6 +71,19 @@
   .animate-bounce-subtle {
     animation: bounceSubtle 2s infinite;
   }
+
+  /* Custom responsive utilities */
+  .text-responsive {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .heading-responsive {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .container-responsive {
+    @apply px-2 sm:px-4 lg:px-6;
+  }
 }
 
 @keyframes fadeIn {
