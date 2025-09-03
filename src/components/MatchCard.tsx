@@ -135,7 +135,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
               <Button
                 onClick={handleSaveResult}
                 disabled={homeScore === "" || awayScore === ""}
-                className="px-6 py-2 shadow-md hover:shadow-lg transition-all duration-200"
+                className="px-6 py-2 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
               >
                 <span className="mr-2">💾</span>
                 Guardar Resultado
@@ -146,7 +146,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
                   onClick={handleEdit}
                   variant="outline"
                   size="sm"
-                  className="shadow-sm hover:shadow-md transition-all duration-200"
+                  className="shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
                 >
                   <span className="mr-1">✏️</span>
                   Editar
@@ -155,7 +155,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
                   onClick={handleReset}
                   variant="destructive"
                   size="sm"
-                  className="shadow-sm hover:shadow-md transition-all duration-200"
+                  className="shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
                 >
                   <span className="mr-1">🗑️</span>
                   Resetear
