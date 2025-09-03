@@ -100,8 +100,8 @@ export const BackupManager = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Button
             onClick={handleExport}
-            className="flex items-center gap-2 h-12"
-            variant="default"
+            className="flex items-center gap-2 h-12 cursor-pointer"
+            variant="outline"
           >
             <span className="text-lg">📤</span>
             Exportar Datos
@@ -110,8 +110,8 @@ export const BackupManager = () => {
           <Button
             onClick={handleImportClick}
             disabled={isImporting}
-            className="flex items-center gap-2 h-12"
-            variant="outline"
+            className="flex items-center gap-2 h-12 cursor-pointer"
+            variant="default"
           >
             <span className="text-lg">📥</span>
             {isImporting ? "Importando..." : "Importar Datos"}

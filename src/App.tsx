@@ -180,7 +180,7 @@ function App() {
                   <Button
                     variant="destructive"
                     onClick={handleReset}
-                    className="text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200"
+                    className="text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
                   >
                     <span className="mr-2">🔄</span>
                     Resetear Todos los Datos
