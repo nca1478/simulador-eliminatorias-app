@@ -23,9 +23,9 @@ function App() {
   } = useEliminatoriasStore();
 
   const [selectedMatchday, setSelectedMatchday] = useState(currentMatchday);
-  const [activeTab, setActiveTab] = useState<"matches" | "standings">(
-    "matches"
-  );
+  const [activeTab, setActiveTab] = useState<
+    "matches" | "standings" | "utilities"
+  >("matches");
 
   useEffect(() => {
     calculateStandings();
@@ -91,12 +91,12 @@ function App() {
         <Tabs
           value={activeTab}
           onValueChange={(value) =>
-            setActiveTab(value as "matches" | "standings")
+            setActiveTab(value as "matches" | "standings" | "utilities")
           }
           className="w-full animate-fade-in"
         >
           <div className="flex justify-center mb-8">
-            <TabsList className="grid w-full max-w-md grid-cols-2 bg-white/80 backdrop-blur-sm shadow-lg">
+            <TabsList className="grid w-full max-w-2xl grid-cols-3 bg-white/80 backdrop-blur-sm shadow-lg">
               <TabsTrigger value="matches" className="flex items-center gap-2">
                 <span className="text-lg">⚽</span>
                 Partidos
@@ -107,6 +107,13 @@ function App() {
               >
                 <span className="text-lg">📊</span>
                 Tabla
+              </TabsTrigger>
+              <TabsTrigger
+                value="utilities"
+                className="flex items-center gap-2"
+              >
+                <span className="text-lg">🔧</span>
+                Utilidades
               </TabsTrigger>
             </TabsList>
           </div>
@@ -154,46 +161,38 @@ function App() {
             />
             <StandingsTable standings={standings} teams={teams} />
           </TabsContent>
+
+          <TabsContent value="utilities" className="space-y-8">
+            {/* Backup Manager */}
+            <div className="max-w-2xl mx-auto">
+              <BackupManager />
+            </div>
+
+            {/* Reset Button */}
+            <div className="text-center">
+              <Card className="inline-block bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <Button
+                    variant="destructive"
+                    onClick={handleReset}
+                    className="text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    <span className="mr-2">🔄</span>
+                    Resetear Todos los Datos
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
         </Tabs>
 
-        {/* Backup Manager */}
-        <div className="max-w-2xl mx-auto mt-12">
-          <BackupManager />
-        </div>
-
-        {/* Reset Button */}
-        <div className="text-center mt-8">
-          <Card className="inline-block bg-white/80 backdrop-blur-sm border-0 shadow-lg">
-            <CardContent className="p-6">
-              <Button
-                variant="destructive"
-                onClick={handleReset}
-                className="text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200"
-              >
-                <span className="mr-2">🔄</span>
-                Resetear Todos los Datos
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
         {/* Footer */}
-        <div className="text-center mt-16 space-y-4">
-          <Separator className="max-w-md mx-auto" />
+        <Separator className="my-12 bg-gradient-to-r from-blue-200 via-green-200 to-blue-200 h-0.5" />
+        <div className="text-center mt-8">
           <div className="text-muted-foreground">
             <p className="font-medium">
               Simulador de Eliminatorias CONMEBOL 2026
             </p>
-            <div className="flex justify-center gap-6 mt-3 text-sm">
-              <div className="flex items-center gap-2">
-                <Badge variant="success" className="w-3 h-3 p-0"></Badge>
-                <span>Clasificación directa (1-6)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Badge variant="warning" className="w-3 h-3 p-0"></Badge>
-                <span>Repechaje (7°)</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
