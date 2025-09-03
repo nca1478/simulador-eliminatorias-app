@@ -100,7 +100,7 @@ function App() {
             <TabsList className="grid w-full max-w-sm sm:max-w-2xl grid-cols-3 bg-white/80 backdrop-blur-sm shadow-lg h-12 sm:h-10">
               <TabsTrigger
                 value="matches"
-                className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+                className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm cursor-pointer"
               >
                 <span className="text-sm sm:text-lg">⚽</span>
                 <span className="hidden xs:inline">Partidos</span>
@@ -108,7 +108,7 @@ function App() {
               </TabsTrigger>
               <TabsTrigger
                 value="standings"
-                className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+                className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm cursor-pointer"
               >
                 <span className="text-sm sm:text-lg">📊</span>
                 <span className="hidden xs:inline">Tabla</span>
@@ -116,7 +116,7 @@ function App() {
               </TabsTrigger>
               <TabsTrigger
                 value="utilities"
-                className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+                className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm cursor-pointer"
               >
                 <span className="text-sm sm:text-lg">🔧</span>
                 <span className="hidden xs:inline">Utilidades</span>
