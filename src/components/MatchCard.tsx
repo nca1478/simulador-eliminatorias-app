@@ -55,46 +55,84 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
         </div>
 
         <div className="space-y-4 sm:space-y-6">
-          {/* Teams Display */}
+          {/* Teams Display - Mobile: horizontal layout, Desktop: same as before */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
-            {/* Equipo Local */}
-            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 w-full sm:w-auto justify-center sm:justify-start">
-              <div className="text-3xl sm:text-4xl drop-shadow-sm">
-                {homeTeam?.flag}
-              </div>
-              <div className="text-center sm:text-left">
-                <div className="font-bold text-base sm:text-lg text-foreground">
-                  {homeTeam?.name}
+            {/* Mobile Layout: Teams in one row */}
+            <div className="flex sm:hidden items-center justify-between w-full gap-2">
+              {/* Equipo Local */}
+              <div className="flex items-center space-x-2 flex-1">
+                <div className="text-2xl drop-shadow-sm">{homeTeam?.flag}</div>
+                <div className="text-left">
+                  <div className="font-bold text-sm text-foreground">
+                    {homeTeam?.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Local</div>
                 </div>
-                <div className="text-xs text-muted-foreground">Local</div>
               </div>
-            </div>
 
-            {/* VS Separator */}
-            <div className="flex flex-col items-center mx-2 sm:mx-4 order-last sm:order-none">
-              <div className="text-xl sm:text-2xl font-bold text-muted-foreground">
+              {/* VS */}
+              <div className="text-lg font-bold text-muted-foreground px-2">
                 VS
               </div>
-              {match.played && (
-                <div className="text-2xl sm:text-3xl font-bold text-primary mt-1 sm:mt-2">
-                  {match.homeScore} - {match.awayScore}
+
+              {/* Equipo Visitante */}
+              <div className="flex items-center space-x-2 flex-1 justify-end">
+                <div className="text-right">
+                  <div className="font-bold text-sm text-foreground">
+                    {awayTeam?.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Visitante</div>
                 </div>
-              )}
+                <div className="text-2xl drop-shadow-sm">{awayTeam?.flag}</div>
+              </div>
             </div>
 
-            {/* Equipo Visitante */}
-            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 w-full sm:w-auto justify-center sm:justify-end">
-              <div className="text-center sm:text-right order-last sm:order-first">
-                <div className="font-bold text-base sm:text-lg text-foreground">
-                  {awayTeam?.name}
+            {/* Desktop Layout: Original layout */}
+            <div className="hidden sm:flex items-center justify-between gap-0 w-full">
+              {/* Equipo Local */}
+              <div className="flex items-center space-x-3 flex-1 justify-start">
+                <div className="text-4xl drop-shadow-sm">{homeTeam?.flag}</div>
+                <div className="text-left">
+                  <div className="font-bold text-lg text-foreground">
+                    {homeTeam?.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Local</div>
                 </div>
-                <div className="text-xs text-muted-foreground">Visitante</div>
               </div>
-              <div className="text-3xl sm:text-4xl drop-shadow-sm">
-                {awayTeam?.flag}
+
+              {/* VS Separator */}
+              <div className="flex flex-col items-center mx-4">
+                <div className="text-2xl font-bold text-muted-foreground">
+                  VS
+                </div>
+                {match.played && (
+                  <div className="text-3xl font-bold text-primary mt-2">
+                    {match.homeScore} - {match.awayScore}
+                  </div>
+                )}
+              </div>
+
+              {/* Equipo Visitante */}
+              <div className="flex items-center space-x-3 flex-1 justify-end">
+                <div className="text-right">
+                  <div className="font-bold text-lg text-foreground">
+                    {awayTeam?.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Visitante</div>
+                </div>
+                <div className="text-4xl drop-shadow-sm">{awayTeam?.flag}</div>
               </div>
             </div>
           </div>
+
+          {/* Mobile Score Display - Separate row for mobile */}
+          {match.played && (
+            <div className="flex sm:hidden justify-center">
+              <div className="text-2xl font-bold text-primary">
+                {match.homeScore} - {match.awayScore}
+              </div>
+            </div>
+          )}
 
           {/* Score Input Section */}
           {!match.played && (
