@@ -34,9 +34,9 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, teams }) => {
   };
 
   const handleReset = () => {
-    setHomeScore("");
-    setAwayScore("");
-    updateMatch(match.id, 0, 0, false);
+    setHomeScore("0");
+    setAwayScore("0");
+    updateMatch(match.id, 0, 0, true);
     setIsEditing(false);
   };
 
