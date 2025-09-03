@@ -3,7 +3,6 @@ import { useEliminatoriasStore } from "../store/eliminatorias";
 import { useBackup } from "../lib/useBackup";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
 
 export const BackupManager = () => {
@@ -72,9 +71,6 @@ export const BackupManager = () => {
     }
   };
 
-  const playedMatches = matches.filter((m) => m.played).length;
-  const totalMatches = matches.length;
-
   return (
     <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
       <CardHeader className="text-center px-4 sm:px-6">
@@ -85,16 +81,6 @@ export const BackupManager = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
-        {/* Estado actual */}
-        <div className="text-center space-y-2">
-          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 text-sm text-muted-foreground">
-            <Badge variant="outline">Fecha {currentMatchday} de 18</Badge>
-            <Badge variant="outline">
-              {playedMatches}/{totalMatches} partidos
-            </Badge>
-          </div>
-        </div>
-
         <Separator />
 
         {/* Botones de acción */}
