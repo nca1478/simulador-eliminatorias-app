@@ -25,18 +25,29 @@ interface SelectProps {
   value: string;
   onValueChange: (value: string) => void;
   children: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export function Select({ value, onValueChange, children }: SelectProps) {
-  const [open, setOpen] = React.useState(false);
+export function Select({
+  value,
+  onValueChange,
+  children,
+  open: controlledOpen,
+  onOpenChange,
+}: SelectProps) {
+  const [internalOpen, setInternalOpen] = React.useState(false);
+
+  const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
+  const setOpen = onOpenChange || setInternalOpen;
 
   React.useEffect(() => {
     const handleClickOutside = () => setOpen(false);
-    if (open) {
+    if (open && controlledOpen === undefined) {
       document.addEventListener("click", handleClickOutside);
       return () => document.removeEventListener("click", handleClickOutside);
     }
-  }, [open]);
+  }, [open, controlledOpen, setOpen]);
 
   return (
     <SelectContext.Provider value={{ value, onValueChange, open, setOpen }}>

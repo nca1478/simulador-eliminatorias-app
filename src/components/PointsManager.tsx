@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useEliminatoriasStore } from "../store/eliminatorias";
 import { Card, CardHeader, CardContent, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
@@ -15,6 +15,8 @@ import { Plus, Minus } from "lucide-react";
 export function PointsManager() {
   const { teams, standings, adjustTeamPoints } = useEliminatoriasStore();
   const [selectedTeam, setSelectedTeam] = useState<string>("");
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
 
   const handlePointsChange = (change: number) => {
     if (!selectedTeam) return;
@@ -29,6 +31,24 @@ export function PointsManager() {
   const selectedTeamData = teams.find((team) => team.id === selectedTeam);
   const currentPoints = selectedTeam ? getTeamCurrentPoints(selectedTeam) : 0;
 
+  // Manejar clics fuera del select para cerrarlo
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsSelectOpen(false);
+      }
+    };
+
+    if (isSelectOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isSelectOpen]);
+
   return (
     <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl">
       <CardHeader className="text-center">
@@ -42,38 +62,52 @@ export function PointsManager() {
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Selector de País */}
-        <div className="space-y-2">
+        <div className="space-y-2" ref={selectRef}>
           <label className="text-sm font-medium text-foreground">
             Seleccionar País
           </label>
-          <Select value={selectedTeam} onValueChange={setSelectedTeam}>
-            <SelectTrigger className="w-full">
-              {selectedTeam ? (
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{selectedTeamData?.flag}</span>
-                  <span>{selectedTeamData?.name}</span>
-                  <Badge variant="secondary" className="ml-auto">
-                    {currentPoints} pts
-                  </Badge>
-                </div>
-              ) : (
-                <SelectValue placeholder="Elige un país..." />
-              )}
-            </SelectTrigger>
-            <SelectContent>
-              {teams.map((team) => (
-                <SelectItem key={team.id} value={team.id}>
-                  <div className="flex items-center gap-2 w-full">
-                    <span className="text-lg">{team.flag}</span>
-                    <span className="flex-1">{team.name}</span>
-                    <Badge variant="secondary">
-                      {getTeamCurrentPoints(team.id)} pts
+          <div
+            className={`transition-all duration-200 ${
+              isSelectOpen ? "mb-64" : "mb-0"
+            }`}
+          >
+            <Select
+              value={selectedTeam}
+              onValueChange={(value) => {
+                setSelectedTeam(value);
+                setIsSelectOpen(false);
+              }}
+              open={isSelectOpen}
+              onOpenChange={setIsSelectOpen}
+            >
+              <SelectTrigger className="w-full">
+                {selectedTeam ? (
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">{selectedTeamData?.flag}</span>
+                    <span>{selectedTeamData?.name}</span>
+                    <Badge variant="secondary" className="ml-auto">
+                      {currentPoints} pts
                     </Badge>
                   </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+                ) : (
+                  <SelectValue placeholder="Elige un país..." />
+                )}
+              </SelectTrigger>
+              <SelectContent>
+                {teams.map((team) => (
+                  <SelectItem key={team.id} value={team.id}>
+                    <div className="flex items-center gap-2 w-full">
+                      <span className="text-lg">{team.flag}</span>
+                      <span className="flex-1">{team.name}</span>
+                      <Badge variant="secondary">
+                        {getTeamCurrentPoints(team.id)} pts
+                      </Badge>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {/* Panel de Control de Puntos */}
